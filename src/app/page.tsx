@@ -1,9 +1,12 @@
+import { desc } from "drizzle-orm";
 import Image from "next/image";
 
 import CategorySelector from "@/components/common/category-selector";
+import Footer from "@/components/common/footer";
 import Header from "@/components/common/header";
 import ProductList from "@/components/common/product-list";
 import { db } from "@/db";
+import { productTable } from "@/db/schema";
 
 const Home = async () => {
   const products = await db.query.productTable.findMany({
@@ -11,7 +14,13 @@ const Home = async () => {
       variants: true,
     },
   });
-  console.log(products);
+  const newlyCreatedProducts = await db.query.productTable.findMany({
+    orderBy: [desc(productTable.createdAt)],
+    limit: 10,
+    with: {
+      variants: true,
+    },
+  });
   const categories = await db.query.categoryTable.findMany({});
 
   return (
@@ -31,12 +40,11 @@ const Home = async () => {
 
         <ProductList products={products} title="Mais vendidos" />
 
-        <p className="px-5">
-          <CategorySelector
-            categories={await db.query.categoryTable.findMany()}
-          />
-        </p>
-        <p className="px-5">
+        <div className="px-5">
+          <CategorySelector categories={categories} />
+        </div>
+
+        <div className="px-5">
           <Image
             src="/banner-02.png"
             alt="Leve uma vida com estilo"
@@ -45,7 +53,10 @@ const Home = async () => {
             sizes="100vw"
             className="h-auto w-full"
           />
-        </p>
+        </div>
+
+        <ProductList products={newlyCreatedProducts} title="Novos produtos" />
+        <Footer />
       </div>
     </>
   );
