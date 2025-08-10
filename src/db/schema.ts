@@ -7,6 +7,7 @@ import {
   timestamp,
   uuid,
 } from "drizzle-orm/pg-core";
+import { email, number } from "zod";
 
 export const userTable = pgTable("user", {
   id: text("id").primaryKey(),
@@ -23,6 +24,10 @@ export const userTable = pgTable("user", {
     .$defaultFn(() => /* @__PURE__ */ new Date())
     .notNull(),
 });
+
+export const userRelations = relations(userTable, ({ many }) => ({
+  shippingAddresses: many(ShippingAddressTable),
+}));
 
 export const sessionTable = pgTable("session", {
   id: text("id").primaryKey(),
@@ -117,6 +122,36 @@ export const productVariantRelations = relations(
     product: one(productTable, {
       fields: [productVariantTable.productId],
       references: [productTable.id],
+    }),
+  }),
+);
+
+export const ShippingAddressTable = pgTable("shipping_address", {
+  id: uuid().primaryKey().defaultRandom(),
+  userId: text("user_id")
+    .notNull()
+    .references(() => userTable.id, { onDelete: "cascade" }),
+  recipientName: text("full_name").notNull(),
+  street: text().notNull(),
+  number: text().notNull(),
+  complement: text(""),
+  city: text().notNull(),
+  state: text().notNull(),
+  neighborhood: text().notNull(),
+  zipCode: text().notNull(),
+  country: text().notNull(),
+  phone: text().notNull(),
+  email: text().notNull(),
+  cpfOrCnpj: text().notNull(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+});
+
+export const shippingAddressRelations = relations(
+  ShippingAddressTable,
+  ({ one }) => ({
+    user: one(userTable, {
+      fields: [ShippingAddressTable.userId],
+      references: [userTable.id],
     }),
   }),
 );
