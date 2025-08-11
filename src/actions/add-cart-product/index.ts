@@ -3,7 +3,7 @@ import { eq } from "drizzle-orm";
 import { headers } from "next/headers";
 
 import { db } from "@/db";
-import { cartItemTable, cartTable, productVariantTable } from "@/db/schema";
+import { cartItemTable, cartTable } from "@/db/schema";
 import { auth } from "@/lib/auth";
 
 import { AddProductToCartSchema, addProductToCartSchema } from "./schema";
@@ -21,7 +21,7 @@ export const addProductToCart = async (data: AddProductToCartSchema) => {
 
   const produtVariant = await db.query.productVariantTable.findFirst({
     where: (productVariant, { eq }) =>
-      eq(productVariant.id, data.producrtVariantId),
+      eq(productVariant.id, data.productVariantId),
   });
 
   if (!produtVariant) {
@@ -32,7 +32,7 @@ export const addProductToCart = async (data: AddProductToCartSchema) => {
     where: (cart, { eq }) => eq(cart.userId, session.user.id),
   });
   let cartId = cart?.id;
-  if (!cart) {
+  if (!cartId) {
     const [newCart] = await db
       .insert(cartTable)
       .values({
@@ -44,7 +44,7 @@ export const addProductToCart = async (data: AddProductToCartSchema) => {
   const cartItem = await db.query.cartItemTable.findFirst({
     where: (cartItem, { eq }) =>
       eq(cartItem.cartId, cartId) &&
-      eq(cartItem.productVariantId, data.producrtVariantId),
+      eq(cartItem.productVariantId, data.productVariantId),
   });
 
   if (cartItem) {
@@ -58,7 +58,7 @@ export const addProductToCart = async (data: AddProductToCartSchema) => {
   }
   await db.insert(cartItemTable).values({
     cartId,
-    productVariantId: data.producrtVariantId,
+    productVariantId: data.productVariantId,
     quantity: data.quantity,
   });
 };
