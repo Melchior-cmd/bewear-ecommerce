@@ -156,7 +156,7 @@ export const ShippingAddressTable = pgTable("shipping_address", {
 
 export const shippingAddressRelations = relations(
   ShippingAddressTable,
-  ({ one, Many }) => ({
+  ({ one, many }) => ({
     user: one(userTable, {
       fields: [ShippingAddressTable.userId],
       references: [userTable.id],
@@ -165,7 +165,7 @@ export const shippingAddressRelations = relations(
       fields: [ShippingAddressTable.id],
       references: [cartTable.shippingAddressId],
     }),
-    orders: Many(orderTable),
+    orders: many(orderTable),
   }),
 );
 
