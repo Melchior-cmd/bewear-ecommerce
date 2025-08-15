@@ -47,6 +47,10 @@ const ConfirmationPage = async () => {
     where: eq(ShippingAddressTable.userId, session.user.id),
   });
 
+  if (!cart.shippingAddress) {
+    redirect("/cart/identification");
+  }
+
   const cartTotalInCents = cart.items.reduce(
     (total, item) => total + item.productVariant.priceInCents * item.quantity,
     0,
