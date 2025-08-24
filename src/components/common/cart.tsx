@@ -53,7 +53,9 @@ const Cart = () => {
                       />
                     ))
                   ) : (
-                    <p className="text-muted-foreground">Your cart is empty</p>
+                    <p className="text-muted-foreground flex items-center justify-center text-lg">
+                      Seu carrinho está vazio
+                    </p>
                   )}
                 </div>
               </ScrollArea>
