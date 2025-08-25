@@ -19,7 +19,7 @@ interface OrdersProps {
     id: string;
     totalPriceInCents: number;
     status: (typeof orderTable.$inferSelect)["status"];
-    createdAt: string;
+    createdAt: Date;
     items: Array<{
       id: string;
       imageUrl: string;
