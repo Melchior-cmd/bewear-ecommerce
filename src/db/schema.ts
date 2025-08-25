@@ -1,4 +1,4 @@
-import { or, relations } from "drizzle-orm";
+import { relations } from "drizzle-orm";
 import {
   boolean,
   integer,
@@ -8,7 +8,6 @@ import {
   timestamp,
   uuid,
 } from "drizzle-orm/pg-core";
-import { email, number } from "zod";
 
 export const userTable = pgTable("user", {
   id: text("id").primaryKey(),

@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import Footer from "@/components/common/footer";
 import Header from "@/components/common/header";
 import { db } from "@/db";
-import { cartTable, ShippingAddressTable } from "@/db/schema";
+import { ShippingAddressTable } from "@/db/schema";
 import { auth } from "@/lib/auth";
 
 import CartSummary from "../components/cart-summary";
