@@ -85,7 +85,7 @@ src/
 ### 1. Clone o Repositório
 
 ```bash
-git clone https://github.com/lucasadsr/bewear.git
+git clone https://github.com/Melchior-cmd/bewear-ecommerce.git
 cd bewear
 ```
 
