@@ -1,4 +1,4 @@
-# Bem-vindo à BEWEAR👋
+# Bem-vindo à Bewear👋
 
 Uma plataforma moderna de e-commerce especializada em calçados e moda urbana, desenvolvida com as mais recentes tecnologias web.
 
