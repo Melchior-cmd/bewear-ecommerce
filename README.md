@@ -185,10 +185,10 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 ## 👨‍💻 Autor
 
-**Lucas Ribeiro** - [GitHub](https://github.com/lucasadsr)
+**Lucas Melchior** - [GitHub](https://github.com/Melchior-cmd)
 
 ---
 
 <p align="center">
-  Desenvolvido com ❤️ por Lucas Ribeiro
+  Desenvolvido com ❤️ por Lucas Melchior
 </p>
