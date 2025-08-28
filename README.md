@@ -86,7 +86,7 @@ src/
 
 ```bash
 git clone https://github.com/Melchior-cmd/bewear-ecommerce.git
-cd bewear
+cd bewear-ecommerce
 ```
 
 ### 2. Instale as Dependências
