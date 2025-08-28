@@ -19,7 +19,7 @@ O **BEWEAR** é uma aplicação completa de e-commerce que oferece uma experiên
 
 ### Frontend
 
-<img src="https://cdn.simpleicons.org/nextdotjs/000000" alt="Next.js" width="20"/>**[Next.js 15](https://nextjs.org/)** - Framework React com App Router
+- **[Next.js 15](https://nextjs.org/)** - Framework React com App Router
 - **[React 19](https://react.dev/)** - Biblioteca para construção da interface
 - **[TypeScript](https://www.typescriptlang.org/)** - Tipagem estática para JavaScript
 - **[Tailwind CSS](https://tailwindcss.com/)** - Framework CSS utilitário
